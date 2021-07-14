@@ -17,11 +17,11 @@ const App = () => {
         e.preventDefault();
         console.log(document)
         socket.emit('message', { document })
-        setDocument('')
+       
     }
     return (
         <>
-            <form onSubmit={handle}>
+            <form onChange={handle}>
                 <input type="text" name="message" value={document} onChange={(e) => setDocument(e.target.value)} required />
                 <button type="submit">send</button>
             </form>
