@@ -12,7 +12,7 @@ app.use(cors())
 
 const auth = require('./routes/auth')
 const private = require('./routes/private')
-
+const document = require('./routes/document')
 const connectDB = require('./config/db')
 
 
@@ -21,6 +21,7 @@ connectDB()
 
 app.use('/api/auth', auth)
 app.use('/api/private', private)
+app.use('/', document)
 
 // should be last piece of middleware 
 app.use(errorHandler)
