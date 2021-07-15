@@ -1,4 +1,3 @@
-
 const app = require('express')
 const server = require('http').createServer(app)
 const io = require('socket.io')(server,{
@@ -10,10 +9,8 @@ const io = require('socket.io')(server,{
 
 io.on('connection', socket => {
     console.log('connection on')
-
-    socket.on('message', payload => {
-        console.log('from client:', payload)
-        io.emit('message', payload)
+    socket.on('doc', payload => {
+        io.emit('doc', payload)
     })
 })
 
