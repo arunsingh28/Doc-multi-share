@@ -1,41 +1,46 @@
 import React, { useState, useEffect } from 'react'
 import io from 'socket.io-client'
+import './style.css'
 
-const socket = io('http://localhost:5000')
-
+const socket = io('https://realtime-doc.herokuapp.com')
 const App = () => {
-    const [document, setDocument] = useState('')
+    const [data, setDocument] = useState('')
     const [history, setHistory] = useState([])
 
+
     useEffect(() => {
-        socket.on('message', payload => {
+        document.title = 'Real Doc'
+        socket.on('doc', payload => {
             setHistory([...history, payload])
         })
     })
 
     const handle = (e) => {
         e.preventDefault();
-        console.log(document)
-        socket.emit('message', { document })
-       
+        socket.emit('doc', { data })
+        setDocument('')
     }
+
     return (
-        <>
-            <form onChange={handle}>
-                <input type="text" name="message" value={document} onChange={(e) => setDocument(e.target.value)} required />
+        <main>
+            <form onSubmit={handle}>
+                <textarea className="inPut" type="text" name="message" value={data} onChange={(e) => setDocument(e.target.value)} required placeholder="Enter your document" />
                 <button type="submit">send</button>
             </form>
-            {
-                history.map((payload, index) => {
-                    return (
-                        <>
-                            <b key={index}>{payload.document}</b>
-                            <hr></hr>
-                        </>
-                    )
-                })
-            }
-        </>
+            <div className="doC">
+                {
+                    history.map((payload, index) => {
+                        return (
+                            <p key={index} className="igotIT" onClick={(e) => {
+                                navigator.clipboard.writeText(payload.data)
+                                e.currentTarget.style.background = '#e801b7'
+                            }}>{payload.data}
+                            </p>
+                        )
+                    })
+                }
+            </div>
+        </main>
     )
 }
 
