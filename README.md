@@ -16,4 +16,4 @@ and its also light weight and easy to use.
 
 - user will be anonymous no one can trace the message and time.
 - every message or text will disapper after refresh the page or *reload* [Text](https://doc.vegihub.in)  not store any message or *data*
-
+- on single click you can copy the whole text or message (usefull in mobile)
