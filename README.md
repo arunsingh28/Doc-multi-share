@@ -2,7 +2,7 @@
 
 ## Why use text share
 
-[Text](https://doc.vegihub.in) share provide the world's fastest sharing plateform without creating any account or login for text share (<b>only text*</b>) between multiple users in real time.
+**[Text](https://doc.vegihub.in) share** provide the world's fastest sharing plateform without creating any account or login for text share (<b>only text*</b>) between multiple users in real time.
 and its also light weight and easy to use.
 
 ## Technologies use
