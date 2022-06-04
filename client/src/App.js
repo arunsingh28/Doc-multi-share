@@ -3,12 +3,19 @@ import io from 'socket.io-client'
 import './style.css'
 
 const socket = io('https://realtime-doc.herokuapp.com')
+
 const App = () => {
     const [data, setDocument] = useState('')
     const [history, setHistory] = useState([])
 
-
     useEffect(() => {
+        document.addEventListener('Keydown', (event) => {
+            if (event.key === 'Enter') {
+                console.log('press Enter')
+                handle()
+            }
+        })
+
         document.title = 'Real Doc'
         socket.on('doc', payload => {
             setHistory([...history, payload])
@@ -21,10 +28,12 @@ const App = () => {
         setDocument('')
     }
 
+
+
     return (
         <main>
             <form onSubmit={handle}>
-                <textarea className="inPut" type="text" name="message" value={data} onChange={(e) => setDocument(e.target.value)} required placeholder="Enter your document" />
+                <input className="inPut" type="text" name="message" value={data} onChange={(e) => setDocument(e.target.value)} required placeholder="Enter your document" />
                 <button type="submit">send</button>
             </form>
             <div className="doC">
